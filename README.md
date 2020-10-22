@@ -22,6 +22,8 @@ pip install -r requirements.txt
 
 4. Feature Scattering model training: CUDA_VISIBLE_DEVICES=0 python train_fea_scatter_libri.py
 
+5. Hybrid model training: CUDA_VISIBLE_DEVICES=0 python train_fea_scatter_libri.py
+
 # Testing
 
-1. All other testing: CUDA_VISIBLE_DEVICES=0 python test_fea_scatter_libri.py
+1. All testing: CUDA_VISIBLE_DEVICES=0 python test_fea_scatter_libri.py
