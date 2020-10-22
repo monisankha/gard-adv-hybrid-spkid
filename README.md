@@ -1,4 +1,4 @@
-# ADVERSARIAL DEFENSE FOR DEEP SPEAKER RECOGNITION USING HYBRIDADVERSARIAL TRAINING
+# ADVERSARIAL DEFENSE FOR DEEP SPEAKER RECOGNITION USING HYBRID ADVERSARIAL TRAINING
 
 We propose a new adversarial defense mechanism based on a hybrid adversarial training (HAT) setup. In contrast to existing works on countermeasures against adversarial attacks in deep speaker recognition that only use class boundary information by supervised cross entropy (CE) loss, we propose to exploit additional information from supervised and unsupervised cues to craft diverse and stronger perturbations for adversarial training. Specifically, we employ multi-task objectives using CE, feature scattering (FS), and margin losses to create adversarial perturbations and include them for adversarial training to enhance the robustness of the model. 
 
