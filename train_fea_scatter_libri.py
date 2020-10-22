@@ -27,30 +27,8 @@ import utils
 from utils import softCrossEntropy
 from utils import one_hot_tensor
 
-#from feature_scatter_attack import Attack_FeaScatter
-#from feature_scatter_attack_fused import Attack_FeaScatter
-#from feature_scatter_attack_fused1 import Attack_FeaScatter
-#from feature_scatter_attack1 import Attack_FeaScatter
-#from feature_scatter_attack_fused2 import Attack_FeaScatter
-#from feature_scatter_attack2 import Attack_FeaScatter
-#from feature_scatter_attack3 import Attack_FeaScatter
-#from feature_scatter_attack4 import Attack_FeaScatter
-#from feature_scatter_attack5 import Attack_FeaScatter
-#from feature_scatter_attack_fused3 import Attack_FeaScatter
-#from feature_scatter_attack_fused4 import Attack_FeaScatter
-
-#from feature_scatter_attack_fused5 import Attack_FeaScatter
-#from feature_scatter_attack_fused6 import Attack_FeaScatter
-#from feature_scatter_attack_fused7 import Attack_FeaScatter
-#from feature_scatter_attack_fused8 import Attack_FeaScatter
-#from feature_scatter_attack_fused9 import Attack_FeaScatter
-
-#from feature_scatter_attack_fused10 import Attack_FeaScatter1
-#from feature_scatter_attack_fused11 import Attack_FeaScatter
-#from feature_scatter_attack_fused12 import Attack_FeaScatter
-#from feature_scatter_attack_fused14 import Attack_FeaScatter    
-
-from feature_scatter_attack_fused_new import Attack_FeaScatter 
+from feature_scatter_attack import Attack_FeaScatter
+ 
 #from feature_scatter_attack_fused_new1 import Attack_FeaScatter
 
 import pdb, sys, os
@@ -287,23 +265,6 @@ def main(args):
     
     soft_xent_loss = softCrossEntropy()       
     
-    #wrap model with ART classifier class
-    #net.train()
-    # classifier_art = PyTorchClassifier(
-    #     model=model,
-    #     loss=criterion,
-    #     optimizer=optimizer,
-    #     input_shape=[1, 5 * hp.sr],  # FIXME
-    #     nb_classes=251,
-    # )
-    
-    #eps = args.epsilon
-    #kwargs = resolve_attacker_args(args, eps, eps_step=eps / 5) 
-    #attacker = AttackerFactory()(args.attack)(classifier_art, **kwargs)
-    #attacker = FastGradientMethod(classifier=classifier_art, eps=eps)
-
-    #adversarial training
-
     # adversarial training
     a1 = []
     b1 = []
@@ -321,24 +282,6 @@ def main(args):
     np.save('training_acc_nat1.npy', a1)
     np.save('training_acc_adv1.npy', b1)
     np.save('adv_loss1.npy', c1)
-
-    #adv_trainer = EnsembleAdversarialTrainer(classifier=classifier_art, attack_methods=[attacker], ratio=args.ratio, augment=args.augment)
-    #adv_trainer.fit_generator(train_generator, args.num_epochs)
-    #logging.info("Finished Training")
-
-    # Step 4: save model
-    # if args.model_ckpt is None:
-    #     ckpt = f"model/libri_model_raw_audio_{time.strftime('%Y%m%d%H%M')}.pt"
-    # else:
-    #     ckpt = args.model_ckpt
-    #
-    # ckpt_optim = os.path.join(os.path.dirname(ckpt), os.path.basename(ckpt)[:-3]+'_optimizer.pt')
-    #
-    # #save model
-    # torch.save(adv_trainer.get_backend_model(), ckpt)
-    # torch.save(adv_trainer.get_backend_optimizer(), ckpt_optim)
-   #multi-gpu code, if needed in future
-   #torch.save(adv_trainer.get_backend_model().module, ckpt)
 
 
 def parse_args():
