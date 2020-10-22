@@ -85,7 +85,7 @@ config_fgsm = {
     'targeted': False,
     'epsilon': args.epsilon,
     'num_steps': 1,
-    'step_size': args.epsilon / 5,
+    'step_size': args.epsilon,
     'random_start': True
 }
 
@@ -182,7 +182,7 @@ def test(epoch, net, criterion, flag):
 attack_list = args.attack_method_list.split('-')
 attack_num = len(attack_list)
 
-for attack_idx in range(2, 5):
+for attack_idx in range(0, 5):
 
     args.attack_method = attack_list[attack_idx]
 
