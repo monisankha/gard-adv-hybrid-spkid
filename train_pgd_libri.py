@@ -206,7 +206,7 @@ def main(args):
     'targeted': False,
     'epsilon': args.epsilon,
     'num_steps': 1,
-    'step_size': args.epsilon / 5,
+    'step_size': args.epsilon,
     'random_start': True
     }  
 
