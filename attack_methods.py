@@ -67,12 +67,12 @@ class Attack_PGD(nn.Module):
         if not attack:
             outputs = self.basic_net(inputs)
             return outputs, None
-
+        #pdb.set_trace()
         if self.box_type == 'white':
             aux_net = pickle.loads(pickle.dumps(self.basic_net))
         elif self.box_type == 'black':
             assert self.attack_net is not None, "should provide an additional net in black-box case"
-            aux_net = pickle.loads(pickle.dumps(self.basic_net))
+            aux_net = pickle.loads(pickle.dumps(self.attack_net))
         aux_net.eval()
         logits_pred_nat = aux_net(inputs)[0]
         #pdb.set_trace()
