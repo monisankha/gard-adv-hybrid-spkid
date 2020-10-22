@@ -27,28 +27,6 @@ import utils
 from utils import softCrossEntropy
 from utils import one_hot_tensor
 
-#from feature_scatter_attack import Attack_FeaScatter
-#from feature_scatter_attack_fused import Attack_FeaScatter
-#from feature_scatter_attack_fused1 import Attack_FeaScatter
-#from feature_scatter_attack1 import Attack_FeaScatter
-#from feature_scatter_attack_fused2 import Attack_FeaScatter
-#from feature_scatter_attack2 import Attack_FeaScatter
-#from feature_scatter_attack3 import Attack_FeaScatter
-#from feature_scatter_attack4 import Attack_FeaScatter
-#from feature_scatter_attack5 import Attack_FeaScatter
-#from feature_scatter_attack_fused3 import Attack_FeaScatter
-#from feature_scatter_attack_fused4 import Attack_FeaScatter
-
-#from feature_scatter_attack_fused5 import Attack_FeaScatter
-#from feature_scatter_attack_fused6 import Attack_FeaScatter
-#from feature_scatter_attack_fused7 import Attack_FeaScatter
-#from feature_scatter_attack_fused8 import Attack_FeaScatter
-#from feature_scatter_attack_fused9 import Attack_FeaScatter
-
-#from feature_scatter_attack_fused10 import Attack_FeaScatter1
-#from feature_scatter_attack_fused11 import Attack_FeaScatter
-#from feature_scatter_attack_fused12 import Attack_FeaScatter
-#from feature_scatter_attack_fused14 import Attack_FeaScatter    
 
 from feature_scatter_attack_hybrid import Attack_FeaScatter 
 #from feature_scatter_attack_fused_new1 import Attack_FeaScatter
@@ -286,23 +264,6 @@ def main(args):
             print('train from scratch: no checkpoint directory or file found')
     
     soft_xent_loss = softCrossEntropy()       
-    
-    #wrap model with ART classifier class
-    #net.train()
-    # classifier_art = PyTorchClassifier(
-    #     model=model,
-    #     loss=criterion,
-    #     optimizer=optimizer,
-    #     input_shape=[1, 5 * hp.sr],  # FIXME
-    #     nb_classes=251,
-    # )
-    
-    #eps = args.epsilon
-    #kwargs = resolve_attacker_args(args, eps, eps_step=eps / 5) 
-    #attacker = AttackerFactory()(args.attack)(classifier_art, **kwargs)
-    #attacker = FastGradientMethod(classifier=classifier_art, eps=eps)
-
-    #adversarial training
 
     # adversarial training
     a1 = []
@@ -322,25 +283,6 @@ def main(args):
     np.save('training_acc_adv1.npy', b1)
     np.save('adv_loss1.npy', c1)
 
-    #adv_trainer = EnsembleAdversarialTrainer(classifier=classifier_art, attack_methods=[attacker], ratio=args.ratio, augment=args.augment)
-    #adv_trainer.fit_generator(train_generator, args.num_epochs)
-    #logging.info("Finished Training")
-
-    # Step 4: save model
-    # if args.model_ckpt is None:
-    #     ckpt = f"model/libri_model_raw_audio_{time.strftime('%Y%m%d%H%M')}.pt"
-    # else:
-    #     ckpt = args.model_ckpt
-    #
-    # ckpt_optim = os.path.join(os.path.dirname(ckpt), os.path.basename(ckpt)[:-3]+'_optimizer.pt')
-    #
-    # #save model
-    # torch.save(adv_trainer.get_backend_model(), ckpt)
-    # torch.save(adv_trainer.get_backend_optimizer(), ckpt_optim)
-   #multi-gpu code, if needed in future
-   #torch.save(adv_trainer.get_backend_model().module, ckpt)
-
-
 def parse_args():
     parser = ArgumentParser("Feature Scatterring Training")
     parser.add_argument('--resume', default='True')
@@ -350,7 +292,7 @@ def parse_args():
     parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
     parser.add_argument("-e", "--epsilon", type=float, default=0.002, help="perturbation scale")
 
-    parser.add_argument('--model_dir', default='/data/monisankha/darpa_gard/gard-adversarial-audio/model_moni_fused_fscw/', type=str, help='model path')
+    parser.add_argument('--model_dir', default='/data/monisankha/darpa_gard/gard-adversarial-audio/model_moni_hybrid/', type=str, help='model path')
     parser.add_argument('--max_epoch', default=200, type=int, help='max number of epochs')
     parser.add_argument('--save_epochs', default=20, type=int, help='save period')
     parser.add_argument('--decay_epoch1', default=60, type=int, help='learning rate decay epoch one')
